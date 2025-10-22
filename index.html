@@ -1,161 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="C3 Electrical Contracting - Professional electrical services for residential, commercial, new construction, and service calls. Power to the People.">
-    <meta name="keywords" content="electrical contractor, electrician, residential electrical, commercial electrical, new construction, service calls">
-    <title>C3 Electrical Contracting | Power To The People</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="nav" id="navbar">
-        <div class="nav__container">
-            <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
-                <span class="nav__toggle-bar"></span>
-                <span class="nav__toggle-bar"></span>
-                <span class="nav__toggle-bar"></span>
-            </button>
-            <ul class="nav__menu" id="navMenu">
-                <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
-                <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
-                <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                <li class="nav__item"><a href="#projects" class="nav__link">Projects</a></li>
-                <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="C3 Electrical Contracting - Professional electrical services for residential, commercial, new construction, and service calls. Power to the People."
+		/>
+		<meta
+			name="keywords"
+			content="electrical contractor, electrician, residential electrical, commercial electrical, new construction, service calls"
+		/>
+		<title>C3 Electrical Contracting | Power To The People</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<!-- Navigation -->
+		<nav class="nav" id="navbar">
+			<div class="nav__container">
+				<button
+					class="nav__toggle"
+					id="navToggle"
+					aria-label="Toggle navigation"
+				>
+					<span class="nav__toggle-bar"></span>
+					<span class="nav__toggle-bar"></span>
+					<span class="nav__toggle-bar"></span>
+				</button>
+				<ul class="nav__menu" id="navMenu">
+					<li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
+					<li class="nav__item">
+						<a href="#testimonials" class="nav__link">Testimonials</a>
+					</li>
+					<li class="nav__item">
+						<a href="#about" class="nav__link">About</a>
+					</li>
+					<li class="nav__item">
+						<a href="#services" class="nav__link">Services</a>
+					</li>
+					<li class="nav__item">
+						<a href="#projects" class="nav__link">Projects</a>
+					</li>
+					<li class="nav__item">
+						<a href="#contact" class="nav__link">Contact</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero__overlay"></div>
-        <img src="https://placehold.co/1920x800/2d2462/ffffff?text=Electrician+Working" alt="Professional electrician at work" class="hero__image">
-        <div class="hero__content">
-            <h1 class="hero__title">C3 ELECTRICAL CONTRACTING</h1>
-            <p class="hero__subtitle">RESIDENTIAL, COMMERCIAL, NEW CONSTRUCTION, SERVICE CALLS</p>
-            <a href="tel:+19104061076" class="hero__phone">(910) 406-1076</a>
-            <p class="hero__tagline">"Power To The People"</p>
-        </div>
-    </section>
+		<!-- Hero Section -->
+		<section class="hero" id="home"></section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="services__container">
-            <h2 class="services__title">Our Services</h2>
-            <div class="services__grid">
-                <div class="services__card">
-                    <h3 class="services__card-title">Residential Electrical</h3>
-                    <p class="services__card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div class="services__card">
-                    <h3 class="services__card-title">Commercial Electrical</h3>
-                    <p class="services__card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div class="services__card">
-                    <h3 class="services__card-title">New Construction</h3>
-                    <p class="services__card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div class="services__card">
-                    <h3 class="services__card-title">Service Calls</h3>
-                    <p class="services__card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div class="services__card">
-                    <h3 class="services__card-title">Electrical Repairs</h3>
-                    <p class="services__card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div class="services__card">
-                    <h3 class="services__card-title">Lighting Installation</h3>
-                    <p class="services__card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+		<!-- Testimonials Section -->
+		<section class="testimonials" id="testimonials">
+			<div class="testimonials__container">
+				<h2 class="testimonials__title">What Our Clients Say</h2>
+				<div class="testimonials__carousel">
+					<button
+						class="testimonials__nav testimonials__nav--prev"
+						aria-label="Previous testimonial"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="40"
+							height="40"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="3"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<polyline points="15 18 9 12 15 6"></polyline>
+						</svg>
+					</button>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="about__container">
-            <div class="about__box">
-                <h2 class="about__title">About C3 Electrical Contracting</h2>
-                <img src="https://placehold.co/600x400/cccccc/333333?text=Professional+Team" alt="C3 Electrical team" class="about__image">
-                <p class="about__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <p class="about__text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <div class="about__credentials">
-                    <h3 class="about__credentials-title">Credentials & Certifications</h3>
-                    <p class="about__credentials-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Licensed and insured professional electrical contractors serving the community with excellence.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+					<div class="testimonials__card">
+						<p class="testimonials__text" id="testimonialText"></p>
+						<p class="testimonials__author" id="testimonialAuthor"></p>
+					</div>
 
-    <!-- Projects Gallery Section -->
-    <section class="projects" id="projects">
-        <div class="projects__container">
-            <h2 class="projects__title">Take a look at some of our completed electrical projects</h2>
-            <div class="projects__grid">
-                <div class="projects__item">
-                    <img src="https://placehold.co/400x300/2d2462/ffffff?text=Project+1" alt="Completed electrical project 1" class="projects__image">
-                </div>
-                <div class="projects__item">
-                    <img src="https://placehold.co/400x300/2d2462/ffffff?text=Project+2" alt="Completed electrical project 2" class="projects__image">
-                </div>
-                <div class="projects__item">
-                    <img src="https://placehold.co/400x300/2d2462/ffffff?text=Project+3" alt="Completed electrical project 3" class="projects__image">
-                </div>
-                <div class="projects__item">
-                    <img src="https://placehold.co/400x300/2d2462/ffffff?text=Project+4" alt="Completed electrical project 4" class="projects__image">
-                </div>
-                <div class="projects__item">
-                    <img src="https://placehold.co/400x300/2d2462/ffffff?text=Project+5" alt="Completed electrical project 5" class="projects__image">
-                </div>
-                <div class="projects__item">
-                    <img src="https://placehold.co/400x300/2d2462/ffffff?text=Project+6" alt="Completed electrical project 6" class="projects__image">
-                </div>
-            </div>
-        </div>
-    </section>
+					<button
+						class="testimonials__nav testimonials__nav--next"
+						aria-label="Next testimonial"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="40"
+							height="40"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="3"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<polyline points="9 18 15 12 9 6"></polyline>
+						</svg>
+					</button>
+				</div>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="contact__container">
-            <h2 class="contact__title">Get In Touch</h2>
-            <div class="contact__grid">
-                <div class="contact__item">
-                    <div class="contact__icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="contact__item-title">Call Us</h3>
-                    <a href="tel:+19104061076" class="contact__link">(910) 406-1076</a>
-                </div>
-                <div class="contact__item">
-                    <div class="contact__icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </div>
-                    <h3 class="contact__item-title">Email Us</h3>
-                    <a href="mailto:C3ElectricalContracting@gmail.com" class="contact__link">C3ElectricalContracting@gmail.com</a>
-                </div>
-            </div>
-        </div>
-    </section>
+				<div class="testimonials__dots" id="testimonialDots"></div>
+			</div>
+		</section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer__container">
-            <div class="footer__brand">
-                <h3 class="footer__title">C3 ELECTRICAL CONTRACTING</h3>
-                <p class="footer__tagline">"Power To The People"</p>
-            </div>
-            <div class="footer__copyright">
-                <p>&copy; 2025 C3 Electrical Contracting. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+		<!-- About Section -->
+		<section class="about" id="about">
+			<div class="about__container">
+				<div class="about__box">
+					<div class="about__title-wrapper">
+						<img
+							src="images/c3-guy.png"
+							alt="C3 Electrical Contractor"
+							class="about__title-image about__title-image--left"
+						/>
+						<h2 class="about__title">C3 Electrical Contracting</h2>
+						<img
+							src="images/c3-guy.png"
+							alt="C3 Electrical Contractor"
+							class="about__title-image about__title-image--right"
+						/>
+					</div>
 
-    <script src="script.js"></script>
-</body>
+					<div class="about__divider"></div>
+
+					<div class="about__content-wrapper">
+						<img
+							src="images/elite-service-angi.png"
+							alt="Elite Service Angi Award"
+							class="about__image about__image--left"
+						/>
+
+						<img
+							src="images/angi-top-rated.png"
+							alt="Angi Top Rated"
+							class="about__image about__image--right"
+						/>
+
+						<p class="about__text">
+							We are a licensed and insured electrical contracting company
+							servicing Wilmington, Ogden, Porter's Neck, Leland, Hampstead,
+							Surf City, Southport, Rocky Point, Carolina Beach, and the
+							surrounding areas. We do both service and installation for
+							residential and commercial projects, including upgrades,
+							additions, and new construction
+						</p>
+
+						<img
+							src="images/angi-screened-and-approved.png"
+							alt="Angi Screened and Approved"
+							class="about__image about__image--bottom"
+						/>
+
+						<div class="about__badges-mobile">
+							<img
+								src="images/elite-service-angi.png"
+								alt="Elite Service Angi Award"
+								class="about__badge-mobile"
+							/>
+							<img
+								src="images/angi-top-rated.png"
+								alt="Angi Top Rated"
+								class="about__badge-mobile"
+							/>
+							<img
+								src="images/angi-screened-and-approved.png"
+								alt="Angi Screened and Approved"
+								class="about__badge-mobile"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Services Section -->
+		<section class="services" id="services">
+			<div class="services__container">
+				<h2 class="services__title">OUR SERVICES</h2>
+				<p class="services__subtitle">
+					Feel free to reach out about the work that you are looking to have
+					completed
+				</p>
+				<div class="services__grid">
+					<div class="services__item">Panel Upgrade & Replacement</div>
+					<div class="services__item">
+						Remodels, Renovations, Additions, and New Construction
+					</div>
+					<div class="services__item">Diagnostic and Troubleshooting</div>
+					<div class="services__item">Generator Installation</div>
+					<div class="services__item">Surge Protection</div>
+					<div class="services__item">EV Chargers</div>
+					<div class="services__item">Pools</div>
+					<div class="services__item">Hot Tubs & Spas</div>
+					<div class="services__item">Lighting Installation</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Projects Gallery Section -->
+		<section class="projects" id="projects">
+			<div class="projects__container">
+				<h2 class="projects__title">OUR PROJECTS</h2>
+				<h3 class="projects__title">
+					Take a look at some of our completed electrical projects
+				</h3>
+				<div class="projects__grid">
+					<div class="projects__item">
+						<img
+							src="https://placehold.co/400x300/2d2462/ffffff?text=Project+1"
+							alt="Completed electrical project 1"
+							class="projects__image"
+						/>
+					</div>
+					<div class="projects__item">
+						<img
+							src="https://placehold.co/400x300/2d2462/ffffff?text=Project+2"
+							alt="Completed electrical project 2"
+							class="projects__image"
+						/>
+					</div>
+					<div class="projects__item">
+						<img
+							src="https://placehold.co/400x300/2d2462/ffffff?text=Project+3"
+							alt="Completed electrical project 3"
+							class="projects__image"
+						/>
+					</div>
+					<div class="projects__item">
+						<img
+							src="https://placehold.co/400x300/2d2462/ffffff?text=Project+4"
+							alt="Completed electrical project 4"
+							class="projects__image"
+						/>
+					</div>
+					<div class="projects__item">
+						<img
+							src="https://placehold.co/400x300/2d2462/ffffff?text=Project+5"
+							alt="Completed electrical project 5"
+							class="projects__image"
+						/>
+					</div>
+					<div class="projects__item">
+						<img
+							src="https://placehold.co/400x300/2d2462/ffffff?text=Project+6"
+							alt="Completed electrical project 6"
+							class="projects__image"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Contact Section -->
+		<section class="contact" id="contact">
+			<div class="contact__container">
+				<h2 class="contact__title">Get In Touch</h2>
+				<div class="contact__grid">
+					<div class="contact__item">
+						<div class="contact__icon">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="48"
+								height="48"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path
+									d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+								></path>
+							</svg>
+						</div>
+						<h3 class="contact__item-title">Office Phone</h3>
+						<a href="tel:+19104061076" class="contact__link">(910) 406-1076</a>
+					</div>
+					<div class="contact__item">
+						<div class="contact__icon">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="48"
+								height="48"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path
+									d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+								></path>
+								<polyline points="22,6 12,13 2,6"></polyline>
+							</svg>
+						</div>
+						<h3 class="contact__item-title">Email Us</h3>
+						<a
+							href="mailto:C3ElectricalContracting@gmail.com"
+							class="contact__link"
+							>C3ElectricalContracting@gmail.com</a
+						>
+					</div>
+				</div>
+
+				<div class="contact__image-wrapper">
+					<img
+						src="images/c3-guy.png"
+						alt="C3 Electrical Contractor"
+						class="contact__guy-image"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="footer__container">
+				<div class="footer__brand">
+					<h3 class="footer__title">C3 ELECTRICAL CONTRACTING</h3>
+					<p class="footer__tagline">"Power To The People"</p>
+				</div>
+				<div class="footer__copyright">
+					<p>&copy; 2025 C3 Electrical Contracting. All rights reserved.</p>
+				</div>
+			</div>
+		</footer>
+
+		<script src="script.js"></script>
+	</body>
 </html>

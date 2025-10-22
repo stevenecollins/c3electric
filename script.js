@@ -107,7 +107,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe elements for animation
-const animateElements = document.querySelectorAll('.services__card, .about__box, .projects__item, .contact__item');
+const animateElements = document.querySelectorAll('.services__card, .about__image, .projects__item, .testimonials__card, .contact__item');
 animateElements.forEach(element => {
     observer.observe(element);
 });
@@ -138,4 +138,160 @@ window.addEventListener('scroll', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflowX = 'hidden';
+});
+
+// ==========================================
+// TESTIMONIALS CAROUSEL
+// ==========================================
+
+let testimonials = [];
+let currentTestimonialIndex = 0;
+let autoRotateInterval;
+let isFirstLoad = true;
+
+// Fetch testimonials from JSON file
+async function loadTestimonials() {
+    try {
+        const response = await fetch('testimonials.json');
+        testimonials = await response.json();
+
+        if (testimonials.length > 0) {
+            displayTestimonial(0, false); // false = no animation on first load
+            createDots();
+            startAutoRotate();
+            isFirstLoad = false;
+        }
+    } catch (error) {
+        console.error('Error loading testimonials:', error);
+        // Display fallback message
+        document.getElementById('testimonialText').textContent = 'Unable to load testimonials at this time.';
+        document.getElementById('testimonialAuthor').textContent = '';
+    }
+}
+
+// Display specific testimonial
+function displayTestimonial(index, animate = true) {
+    if (testimonials.length === 0) return;
+
+    const testimonialText = document.getElementById('testimonialText');
+    const testimonialAuthor = document.getElementById('testimonialAuthor');
+    const testimonialCard = document.querySelector('.testimonials__card');
+
+    // Only add fade animation if not first load and animate is true
+    if (animate && !isFirstLoad) {
+        // Step 1: Fade out (300ms)
+        testimonialCard.classList.add('fade-out');
+
+        // Step 2: After fade out completes, update content
+        setTimeout(() => {
+            // Update content while invisible
+            testimonialText.textContent = testimonials[index].text;
+            testimonialAuthor.textContent = `- ${testimonials[index].name}`;
+
+            // Update active dot
+            updateActiveDot(index);
+
+            // Step 3: Fade back in (remove fade-out class)
+            setTimeout(() => {
+                testimonialCard.classList.remove('fade-out');
+            }, 50); // Brief moment of being fully invisible
+        }, 300); // Wait for fade out to complete
+    } else {
+        // No animation - just update immediately
+        testimonialText.textContent = testimonials[index].text;
+        testimonialAuthor.textContent = `- ${testimonials[index].name}`;
+        updateActiveDot(index);
+    }
+}
+
+// Create dot indicators
+function createDots() {
+    const dotsContainer = document.getElementById('testimonialDots');
+    dotsContainer.innerHTML = '';
+
+    testimonials.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.classList.add('testimonials__dot');
+        dot.setAttribute('aria-label', `Go to testimonial ${index + 1}`);
+
+        if (index === 0) {
+            dot.classList.add('active');
+        }
+
+        dot.addEventListener('click', () => {
+            currentTestimonialIndex = index;
+            displayTestimonial(index);
+            resetAutoRotate();
+        });
+
+        dotsContainer.appendChild(dot);
+    });
+}
+
+// Update active dot indicator
+function updateActiveDot(index) {
+    const dots = document.querySelectorAll('.testimonials__dot');
+    dots.forEach((dot, i) => {
+        if (i === index) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+}
+
+// Navigate to next testimonial
+function nextTestimonial() {
+    currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+    displayTestimonial(currentTestimonialIndex);
+    resetAutoRotate();
+}
+
+// Navigate to previous testimonial
+function prevTestimonial() {
+    currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
+    displayTestimonial(currentTestimonialIndex);
+    resetAutoRotate();
+}
+
+// Auto-rotate testimonials
+function startAutoRotate() {
+    autoRotateInterval = setInterval(() => {
+        nextTestimonial();
+    }, 5000); // Change testimonial every 5 seconds
+}
+
+// Reset auto-rotate timer
+function resetAutoRotate() {
+    clearInterval(autoRotateInterval);
+    startAutoRotate();
+}
+
+// Event listeners for navigation buttons
+document.addEventListener('DOMContentLoaded', () => {
+    const prevButton = document.querySelector('.testimonials__nav--prev');
+    const nextButton = document.querySelector('.testimonials__nav--next');
+
+    if (prevButton) {
+        prevButton.addEventListener('click', prevTestimonial);
+    }
+
+    if (nextButton) {
+        nextButton.addEventListener('click', nextTestimonial);
+    }
+
+    // Pause auto-rotate on hover
+    const carousel = document.querySelector('.testimonials__carousel');
+    if (carousel) {
+        carousel.addEventListener('mouseenter', () => {
+            clearInterval(autoRotateInterval);
+        });
+
+        carousel.addEventListener('mouseleave', () => {
+            startAutoRotate();
+        });
+    }
+
+    // Load testimonials
+    loadTestimonials();
 });
