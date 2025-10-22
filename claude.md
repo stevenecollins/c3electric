@@ -14,7 +14,8 @@ c3-electric-website/
 ├── styles.css
 ├── script.js
 ├── images/ (for future real images)
-└── claude.md
+├── claude.md
+└── c3electric.png (Design of website)
 ```
 
 ## Technical Requirements
