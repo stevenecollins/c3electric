@@ -11,6 +11,7 @@
 html {
 	scroll-behavior: smooth;
 	font-size: 16px;
+	overflow-x: hidden;
 }
 
 body {
@@ -19,6 +20,9 @@ body {
 	line-height: 1.6;
 	color: #333;
 	background-color: #ffffff;
+	overflow-x: hidden;
+	width: 100%;
+	position: relative;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700;900&family=Montserrat:wght@700;900&display=swap");
@@ -118,7 +122,7 @@ ul {
 	position: relative;
 	width: 100%;
 	min-height: 600px;
-	background-image: url("images/c3electrical-bkgd.png");
+	background-image: url("images/c3-final-a3new.jpg");
 	background-size: cover;
 	background-position: center top;
 	background-repeat: no-repeat;
@@ -135,6 +139,7 @@ ul {
 	text-align: center;
 	padding: 2rem 20px 0;
 	z-index: 10;
+	display: none; /* Temporarily hidden for image testing */
 }
 
 .hero__title {
@@ -625,6 +630,229 @@ ul {
 	object-fit: contain;
 }
 
+/* Contact Button Styling */
+.contact__item--button {
+	cursor: pointer;
+	transition: transform 0.3s ease, box-shadow 0.3s ease,
+		background-color 0.3s ease;
+}
+
+.contact__item--button:hover {
+	background-color: #2d2462;
+}
+
+.contact__item--button:hover .contact__icon {
+	color: #ffffff;
+}
+
+.contact__item--button:hover .contact__item-title,
+.contact__item--button:hover .contact__button-text {
+	color: #ffffff;
+}
+
+.contact__button-text {
+	font-size: 1.1rem;
+	color: #666;
+	margin-top: 0.5rem;
+}
+
+/* ==========================================
+   CONTACT FORM MODAL
+   ========================================== */
+
+.modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	animation: fadeIn 0.3s ease;
+}
+
+.modal.active {
+	display: block;
+}
+
+.modal__overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal__content {
+	position: relative;
+	background-color: #ffffff;
+	max-width: 600px;
+	width: 90%;
+	margin: 50px auto;
+	padding: 3rem 2.5rem;
+	border-radius: 10px;
+	box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+	max-height: 90vh;
+	overflow-y: auto;
+	animation: slideDown 0.3s ease;
+}
+
+.modal__close {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0.5rem;
+	color: #666;
+	transition: color 0.3s ease, transform 0.3s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal__close:hover {
+	color: #2d2462;
+	transform: rotate(90deg);
+}
+
+.modal__title {
+	font-size: 2rem;
+	color: #2d2462;
+	margin-bottom: 0.5rem;
+	text-align: center;
+}
+
+.modal__subtitle {
+	font-size: 1rem;
+	color: #666;
+	text-align: center;
+	margin-bottom: 2rem;
+}
+
+/* ==========================================
+   CONTACT FORM
+   ========================================== */
+
+.contact-form {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.form-label {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #333;
+}
+
+.form-input,
+.form-textarea {
+	padding: 0.75rem 1rem;
+	font-size: 1rem;
+	border: 2px solid #ddd;
+	border-radius: 5px;
+	transition: border-color 0.3s ease;
+	font-family: inherit;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+	outline: none;
+	border-color: #2d2462;
+}
+
+.form-textarea {
+	resize: vertical;
+	min-height: 120px;
+}
+
+.form-actions {
+	margin-top: 1rem;
+}
+
+.form-submit {
+	width: 100%;
+	padding: 1rem 2rem;
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: #ffffff;
+	background-color: #2d2462;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.form-submit:hover {
+	background-color: #1a1437;
+	transform: translateY(-2px);
+}
+
+.form-submit:active {
+	transform: translateY(0);
+}
+
+.form-submit:disabled {
+	background-color: #999;
+	cursor: not-allowed;
+	transform: none;
+}
+
+.form-message {
+	text-align: center;
+	padding: 1rem;
+	border-radius: 5px;
+	margin-top: 1rem;
+	display: none;
+}
+
+.form-message.success {
+	display: block;
+	background-color: #d4edda;
+	color: #155724;
+	border: 1px solid #c3e6cb;
+}
+
+.form-message.error {
+	display: block;
+	background-color: #f8d7da;
+	color: #721c24;
+	border: 1px solid #f5c6cb;
+}
+
+/* ==========================================
+   MODAL ANIMATIONS
+   ========================================== */
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slideDown {
+	from {
+		transform: translateY(-50px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
 /* ==========================================
    FOOTER
    ========================================== */
@@ -662,6 +890,15 @@ ul {
 	padding-top: 1.5rem;
 	border-top: 1px solid #333;
 	color: #999;
+}
+
+.footer__email {
+	color: #999;
+	transition: color 0.3s ease;
+}
+
+.footer__email:hover {
+	color: #ffffff;
 }
 
 /* ==========================================
@@ -942,6 +1179,27 @@ ul {
 
 	.footer__tagline {
 		font-size: 1rem;
+	}
+
+	/* Modal responsive styles */
+	.modal__content {
+		width: 95%;
+		margin: 20px auto;
+		padding: 2rem 1.5rem;
+		max-height: 85vh;
+	}
+
+	.modal__title {
+		font-size: 1.5rem;
+	}
+
+	.modal__subtitle {
+		font-size: 0.9rem;
+	}
+
+	.form-input,
+	.form-textarea {
+		font-size: 16px; /* Prevents iOS zoom on focus */
 	}
 }
 

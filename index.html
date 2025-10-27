@@ -284,7 +284,7 @@
 						<h3 class="contact__item-title">Office Phone</h3>
 						<a href="tel:+19104061076" class="contact__link">(910) 406-1076</a>
 					</div>
-					<div class="contact__item">
+					<div class="contact__item contact__item--button" id="contactFormBtn">
 						<div class="contact__icon">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -298,17 +298,16 @@
 								stroke-linejoin="round"
 							>
 								<path
-									d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+									d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
 								></path>
-								<polyline points="22,6 12,13 2,6"></polyline>
+								<polyline points="14,2 14,8 20,8"></polyline>
+								<line x1="16" y1="13" x2="8" y2="13"></line>
+								<line x1="16" y1="17" x2="8" y2="17"></line>
+								<polyline points="10,9 9,9 8,9"></polyline>
 							</svg>
 						</div>
-						<h3 class="contact__item-title">Email Us</h3>
-						<a
-							href="mailto:C3ElectricalContracting@gmail.com"
-							class="contact__link"
-							>C3ElectricalContracting@gmail.com</a
-						>
+						<h3 class="contact__item-title">Contact Us</h3>
+						<p class="contact__button-text">Send us a message</p>
 					</div>
 				</div>
 
@@ -330,10 +329,96 @@
 					<p class="footer__tagline">"Power To The People"</p>
 				</div>
 				<div class="footer__copyright">
-					<p>&copy; 2025 C3 Electrical Contracting. All rights reserved.</p>
+					<p>
+						&copy; 2025 C3 Electrical Contracting. All rights reserved. |
+						<a href="mailto:C3ElectricalContracting@gmail.com" class="footer__email"
+							>C3ElectricalContracting@gmail.com</a
+						>
+					</p>
 				</div>
 			</div>
 		</footer>
+
+		<!-- Contact Form Modal -->
+		<div class="modal" id="contactModal">
+			<div class="modal__overlay" id="modalOverlay"></div>
+			<div class="modal__content">
+				<button class="modal__close" id="modalClose" aria-label="Close modal">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<line x1="18" y1="6" x2="6" y2="18"></line>
+						<line x1="6" y1="6" x2="18" y2="18"></line>
+					</svg>
+				</button>
+				<h2 class="modal__title">Contact Us</h2>
+				<p class="modal__subtitle">Send us a message and we'll get back to you soon!</p>
+
+				<form id="contactForm" class="contact-form">
+					<div class="form-group">
+						<label for="contactName" class="form-label">Name *</label>
+						<input
+							type="text"
+							id="contactName"
+							name="name"
+							class="form-input"
+							required
+							placeholder="Your name"
+						/>
+					</div>
+
+					<div class="form-group">
+						<label for="contactPhone" class="form-label">Phone Number *</label>
+						<input
+							type="tel"
+							id="contactPhone"
+							name="phone"
+							class="form-input"
+							required
+							placeholder="(910) 123-4567"
+						/>
+					</div>
+
+					<div class="form-group">
+						<label for="contactEmail" class="form-label">Email *</label>
+						<input
+							type="email"
+							id="contactEmail"
+							name="email"
+							class="form-input"
+							required
+							placeholder="your.email@example.com"
+						/>
+					</div>
+
+					<div class="form-group">
+						<label for="contactMessage" class="form-label">Message *</label>
+						<textarea
+							id="contactMessage"
+							name="message"
+							class="form-textarea"
+							required
+							placeholder="Tell us about your project or what you need..."
+							rows="5"
+						></textarea>
+					</div>
+
+					<div class="form-actions">
+						<button type="submit" class="form-submit">Send Message</button>
+					</div>
+
+					<div class="form-message" id="formMessage"></div>
+				</form>
+			</div>
+		</div>
 
 		<script src="script.js"></script>
 	</body>

@@ -295,3 +295,167 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load testimonials
     loadTestimonials();
 });
+
+// ==========================================
+// CONTACT FORM MODAL
+// ==========================================
+
+const contactModal = document.getElementById('contactModal');
+const contactFormBtn = document.getElementById('contactFormBtn');
+const modalClose = document.getElementById('modalClose');
+const modalOverlay = document.getElementById('modalOverlay');
+const contactForm = document.getElementById('contactForm');
+const formMessage = document.getElementById('formMessage');
+
+// Open modal
+function openModal() {
+    contactModal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+// Close modal
+function closeModal() {
+    contactModal.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+    // Clear form message if any
+    formMessage.className = 'form-message';
+    formMessage.textContent = '';
+}
+
+// Event listeners for opening/closing modal
+if (contactFormBtn) {
+    contactFormBtn.addEventListener('click', openModal);
+}
+
+if (modalClose) {
+    modalClose.addEventListener('click', closeModal);
+}
+
+if (modalOverlay) {
+    modalOverlay.addEventListener('click', closeModal);
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && contactModal.classList.contains('active')) {
+        closeModal();
+    }
+});
+
+// ==========================================
+// FORM VALIDATION & SUBMISSION
+// ==========================================
+
+// Google Apps Script Web App URL (PLACEHOLDER - replace with your actual URL)
+const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+// Form submission handler
+contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Get form data
+    const formData = {
+        name: document.getElementById('contactName').value.trim(),
+        phone: document.getElementById('contactPhone').value.trim(),
+        email: document.getElementById('contactEmail').value.trim(),
+        message: document.getElementById('contactMessage').value.trim(),
+        timestamp: new Date().toISOString()
+    };
+
+    // Basic validation
+    if (!formData.name || !formData.phone || !formData.email || !formData.message) {
+        showFormMessage('Please fill in all required fields.', 'error');
+        return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+        showFormMessage('Please enter a valid email address.', 'error');
+        return;
+    }
+
+    // Phone validation (basic)
+    const phoneRegex = /^[\d\s\-\(\)]+$/;
+    if (!phoneRegex.test(formData.phone)) {
+        showFormMessage('Please enter a valid phone number.', 'error');
+        return;
+    }
+
+    // Disable submit button during submission
+    const submitButton = contactForm.querySelector('.form-submit');
+    const originalButtonText = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+
+    try {
+        // Check if Google Script URL is set
+        if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+            throw new Error('Google Apps Script URL not configured yet. Please follow the setup instructions.');
+        }
+
+        // Send data to Google Sheets via Apps Script
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Required for Google Apps Script
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+
+        // With no-cors mode, we can't read the response, so we assume success
+        // if no error was thrown
+        showFormMessage('Thank you! Your message has been sent successfully. We\'ll get back to you soon!', 'success');
+
+        // Clear form
+        contactForm.reset();
+
+        // Close modal after 3 seconds
+        setTimeout(() => {
+            closeModal();
+        }, 3000);
+
+    } catch (error) {
+        console.error('Form submission error:', error);
+        showFormMessage(error.message || 'Sorry, there was an error sending your message. Please try emailing us directly.', 'error');
+    } finally {
+        // Re-enable submit button
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+    }
+});
+
+// Show form message
+function showFormMessage(message, type) {
+    formMessage.textContent = message;
+    formMessage.className = `form-message ${type}`;
+
+    // Scroll message into view
+    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ==========================================
+// PHONE NUMBER FORMATTING (OPTIONAL)
+// ==========================================
+
+// Format phone number as user types
+const phoneInput = document.getElementById('contactPhone');
+if (phoneInput) {
+    phoneInput.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+
+        // Format as (XXX) XXX-XXXX
+        if (value.length > 0) {
+            if (value.length <= 3) {
+                value = `(${value}`;
+            } else if (value.length <= 6) {
+                value = `(${value.slice(0, 3)}) ${value.slice(3)}`;
+            } else {
+                value = `(${value.slice(0, 3)}) ${value.slice(3, 6)}-${value.slice(6, 10)}`;
+            }
+        }
+
+        e.target.value = value;
+    });
+}
