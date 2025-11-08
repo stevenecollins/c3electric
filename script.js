@@ -107,7 +107,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe elements for animation
-const animateElements = document.querySelectorAll('.services__card, .about__image, .projects__item, .testimonials__card, .contact__item');
+const animateElements = document.querySelectorAll('.services__card, .about__image, .gallery__item, .testimonials__card, .contact__item');
 animateElements.forEach(element => {
     observer.observe(element);
 });
@@ -459,3 +459,308 @@ if (phoneInput) {
         e.target.value = value;
     });
 }
+
+// ==========================================
+// PROJECT GALLERY - HORIZONTAL CAROUSEL
+// ==========================================
+
+// Gallery Image Data Array
+// To add/remove images: Simply edit this array
+const galleryImages = [
+    { src: 'https://placehold.co/600x400/2d2462/ffffff?text=Generator+Installation', alt: 'Generator installation project', orientation: 'landscape' },
+    { src: 'https://placehold.co/400x600/2d2462/ffffff?text=Electrical+Panel', alt: 'Electrical panel upgrade', orientation: 'portrait' },
+    { src: 'https://placehold.co/600x400/2d2462/ffffff?text=Meter+Setup', alt: 'Meter and power setup', orientation: 'landscape' },
+    { src: 'https://placehold.co/400x600/2d2462/ffffff?text=Outdoor+Installation', alt: 'Outdoor electrical installation', orientation: 'portrait' },
+    { src: 'https://placehold.co/600x400/2d2462/ffffff?text=EV+Charger', alt: 'EV charger installation', orientation: 'landscape' },
+    { src: 'https://placehold.co/600x400/2d2462/ffffff?text=Ceiling+Fan', alt: 'Ceiling fan and lighting installation', orientation: 'landscape' },
+    { src: 'https://placehold.co/400x600/2d2462/ffffff?text=Panel+Wiring', alt: 'Detailed panel wiring', orientation: 'portrait' },
+    { src: 'https://placehold.co/600x400/2d2462/ffffff?text=Commercial+Job', alt: 'Commercial electrical project', orientation: 'landscape' },
+    { src: 'https://placehold.co/600x400/2d2462/ffffff?text=Service+Upgrade', alt: 'Service upgrade project', orientation: 'landscape' },
+    { src: 'https://placehold.co/400x600/2d2462/ffffff?text=Breaker+Box', alt: 'New breaker box installation', orientation: 'portrait' },
+    { src: 'https://placehold.co/600x400/2d2462/ffffff?text=Pool+Electrical', alt: 'Pool and spa electrical work', orientation: 'landscape' },
+    { src: 'https://placehold.co/400x600/2d2462/ffffff?text=Finished+Panel', alt: 'Finished electrical panel', orientation: 'portrait' }
+];
+
+// Gallery Elements
+const galleryContainer = document.getElementById('galleryContainer');
+const galleryNavLeft = document.getElementById('galleryNavLeft');
+const galleryNavRight = document.getElementById('galleryNavRight');
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
+
+let currentLightboxIndex = 0;
+let touchStartX = 0;
+let touchEndX = 0;
+
+// Generate Gallery Items with Smart Pairing
+function generateGallery() {
+    if (!galleryContainer) return;
+
+    galleryContainer.innerHTML = '';
+
+    // Step 1: Separate images by orientation and track original indices
+    const landscapes = [];
+    const portraits = [];
+
+    galleryImages.forEach((image, index) => {
+        if (image.orientation === 'landscape') {
+            landscapes.push({ image, index });
+        } else {
+            portraits.push({ image, index });
+        }
+    });
+
+    // Step 2: Create landscape pairs
+    const landscapePairs = [];
+    const orphanLandscapes = [];
+
+    for (let i = 0; i < landscapes.length; i += 2) {
+        if (i + 1 < landscapes.length) {
+            // Pair exists
+            landscapePairs.push([landscapes[i], landscapes[i + 1]]);
+        } else {
+            // Orphan landscape (odd one out)
+            orphanLandscapes.push(landscapes[i]);
+        }
+    }
+
+    // Step 3: Build gallery by alternating pairs with portraits
+    let pairIndex = 0;
+    let portraitIndex = 0;
+
+    // Alternate: pair, portrait, pair, portrait...
+    while (pairIndex < landscapePairs.length || portraitIndex < portraits.length) {
+        // Add a landscape pair if available
+        if (pairIndex < landscapePairs.length) {
+            const pair = landscapePairs[pairIndex];
+            const column = document.createElement('div');
+            column.classList.add('gallery__column', 'gallery__column--paired');
+
+            // Top landscape
+            const item1 = createGalleryItem(pair[0].image, pair[0].index);
+            column.appendChild(item1);
+
+            // Bottom landscape
+            const item2 = createGalleryItem(pair[1].image, pair[1].index);
+            column.appendChild(item2);
+
+            galleryContainer.appendChild(column);
+            pairIndex++;
+        }
+
+        // Add a portrait if available
+        if (portraitIndex < portraits.length) {
+            const portrait = portraits[portraitIndex];
+            const column = document.createElement('div');
+            column.classList.add('gallery__column', 'gallery__column--single');
+
+            const item = createGalleryItem(portrait.image, portrait.index);
+            column.appendChild(item);
+
+            galleryContainer.appendChild(column);
+            portraitIndex++;
+        }
+    }
+
+    // Step 4: Add any orphan landscape at the end (enlarged)
+    orphanLandscapes.forEach(orphan => {
+        const column = document.createElement('div');
+        column.classList.add('gallery__column', 'gallery__column--single');
+
+        const item = createGalleryItem(orphan.image, orphan.index, true); // true = enlarged
+        column.appendChild(item);
+
+        galleryContainer.appendChild(column);
+    });
+
+    // Initial chevron state
+    updateChevronStates();
+}
+
+// Helper function to create individual gallery items
+function createGalleryItem(image, index, isEnlarged = false) {
+    const item = document.createElement('div');
+    item.classList.add('gallery__item', `gallery__item--${image.orientation}`);
+
+    if (isEnlarged) {
+        item.classList.add('gallery__item--enlarged');
+    }
+
+    const img = document.createElement('img');
+    img.src = image.src;
+    img.alt = image.alt;
+    img.classList.add('gallery__image');
+    img.loading = 'lazy';
+
+    // Click to open lightbox
+    item.addEventListener('click', () => openLightbox(index));
+
+    item.appendChild(img);
+    return item;
+}
+
+// Update Chevron Button States
+function updateChevronStates() {
+    if (!galleryContainer || !galleryNavLeft || !galleryNavRight) return;
+
+    const scrollLeft = galleryContainer.scrollLeft;
+    const maxScroll = galleryContainer.scrollWidth - galleryContainer.clientWidth;
+
+    // Left chevron: disabled at start
+    if (scrollLeft <= 10) {
+        galleryNavLeft.disabled = true;
+    } else {
+        galleryNavLeft.disabled = false;
+    }
+
+    // Right chevron: disabled at end
+    if (scrollLeft >= maxScroll - 10) {
+        galleryNavRight.disabled = true;
+    } else {
+        galleryNavRight.disabled = false;
+    }
+}
+
+// Scroll Gallery
+function scrollGallery(direction) {
+    if (!galleryContainer) return;
+
+    const scrollAmount = galleryContainer.clientWidth * 0.5; // 50% scroll
+
+    if (direction === 'left') {
+        galleryContainer.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+        });
+    } else if (direction === 'right') {
+        galleryContainer.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+    }
+}
+
+// Touch Swipe Handling (Mobile)
+function handleTouchStart(e) {
+    touchStartX = e.touches[0].clientX;
+}
+
+function handleTouchMove(e) {
+    touchEndX = e.touches[0].clientX;
+}
+
+function handleTouchEnd() {
+    const swipeThreshold = 50;
+    const swipeDistance = touchStartX - touchEndX;
+
+    if (Math.abs(swipeDistance) > swipeThreshold) {
+        if (swipeDistance > 0) {
+            // Swipe left - scroll right
+            scrollGallery('right');
+        } else {
+            // Swipe right - scroll left
+            scrollGallery('left');
+        }
+    }
+
+    // Reset touch positions
+    touchStartX = 0;
+    touchEndX = 0;
+}
+
+// Open Lightbox
+function openLightbox(index) {
+    if (!lightbox || !lightboxImage) return;
+
+    currentLightboxIndex = index;
+    lightboxImage.src = galleryImages[index].src;
+    lightboxImage.alt = galleryImages[index].alt;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+    // Add keyboard event listener
+    document.addEventListener('keydown', handleLightboxKeyboard);
+}
+
+// Close Lightbox
+function closeLightbox() {
+    if (!lightbox) return;
+
+    lightbox.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+
+    // Remove keyboard event listener
+    document.removeEventListener('keydown', handleLightboxKeyboard);
+}
+
+// Navigate Lightbox
+function navigateLightbox(direction) {
+    if (direction === 'prev') {
+        currentLightboxIndex = (currentLightboxIndex - 1 + galleryImages.length) % galleryImages.length;
+    } else if (direction === 'next') {
+        currentLightboxIndex = (currentLightboxIndex + 1) % galleryImages.length;
+    }
+
+    lightboxImage.src = galleryImages[currentLightboxIndex].src;
+    lightboxImage.alt = galleryImages[currentLightboxIndex].alt;
+}
+
+// Keyboard Navigation in Lightbox
+function handleLightboxKeyboard(e) {
+    if (e.key === 'Escape') {
+        closeLightbox();
+    } else if (e.key === 'ArrowLeft') {
+        navigateLightbox('prev');
+    } else if (e.key === 'ArrowRight') {
+        navigateLightbox('next');
+    }
+}
+
+// Event Listeners for Gallery
+if (galleryNavLeft) {
+    galleryNavLeft.addEventListener('click', () => scrollGallery('left'));
+}
+
+if (galleryNavRight) {
+    galleryNavRight.addEventListener('click', () => scrollGallery('right'));
+}
+
+if (galleryContainer) {
+    galleryContainer.addEventListener('scroll', updateChevronStates);
+    galleryContainer.addEventListener('touchstart', handleTouchStart);
+    galleryContainer.addEventListener('touchmove', handleTouchMove);
+    galleryContainer.addEventListener('touchend', handleTouchEnd);
+}
+
+// Event Listeners for Lightbox
+if (lightboxClose) {
+    lightboxClose.addEventListener('click', closeLightbox);
+}
+
+if (lightboxPrev) {
+    lightboxPrev.addEventListener('click', () => navigateLightbox('prev'));
+}
+
+if (lightboxNext) {
+    lightboxNext.addEventListener('click', () => navigateLightbox('next'));
+}
+
+// Click outside image to close (but not on navigation buttons)
+if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+}
+
+// Initialize Gallery on Page Load
+document.addEventListener('DOMContentLoaded', () => {
+    generateGallery();
+
+    // Update chevron states on window resize
+    window.addEventListener('resize', updateChevronStates);
+});
