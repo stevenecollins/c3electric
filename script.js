@@ -467,18 +467,16 @@ if (phoneInput) {
 // Gallery Image Data Array
 // To add/remove images: Simply edit this array
 const galleryImages = [
-    { src: 'https://placehold.co/600x400/2d2462/ffffff?text=Generator+Installation', alt: 'Generator installation project', orientation: 'landscape' },
-    { src: 'https://placehold.co/400x600/2d2462/ffffff?text=Electrical+Panel', alt: 'Electrical panel upgrade', orientation: 'portrait' },
-    { src: 'https://placehold.co/600x400/2d2462/ffffff?text=Meter+Setup', alt: 'Meter and power setup', orientation: 'landscape' },
-    { src: 'https://placehold.co/400x600/2d2462/ffffff?text=Outdoor+Installation', alt: 'Outdoor electrical installation', orientation: 'portrait' },
-    { src: 'https://placehold.co/600x400/2d2462/ffffff?text=EV+Charger', alt: 'EV charger installation', orientation: 'landscape' },
-    { src: 'https://placehold.co/600x400/2d2462/ffffff?text=Ceiling+Fan', alt: 'Ceiling fan and lighting installation', orientation: 'landscape' },
-    { src: 'https://placehold.co/400x600/2d2462/ffffff?text=Panel+Wiring', alt: 'Detailed panel wiring', orientation: 'portrait' },
-    { src: 'https://placehold.co/600x400/2d2462/ffffff?text=Commercial+Job', alt: 'Commercial electrical project', orientation: 'landscape' },
-    { src: 'https://placehold.co/600x400/2d2462/ffffff?text=Service+Upgrade', alt: 'Service upgrade project', orientation: 'landscape' },
-    { src: 'https://placehold.co/400x600/2d2462/ffffff?text=Breaker+Box', alt: 'New breaker box installation', orientation: 'portrait' },
-    { src: 'https://placehold.co/600x400/2d2462/ffffff?text=Pool+Electrical', alt: 'Pool and spa electrical work', orientation: 'landscape' },
-    { src: 'https://placehold.co/400x600/2d2462/ffffff?text=Finished+Panel', alt: 'Finished electrical panel', orientation: 'portrait' }
+    { src: 'images/gallery/DawkinsGenerator.jpg', alt: 'Generator installation for Dawkins residence', orientation: 'landscape' },
+    { src: 'images/gallery/DawkinsTransferSwitch.jpeg', alt: 'Transfer switch installation', orientation: 'portrait' },
+    { src: 'images/gallery/IMG_0389.jpeg', alt: 'Electrical panel and wiring installation', orientation: 'landscape' },
+    { src: 'images/gallery/IMG_0388.jpeg', alt: 'Electrical panel installation detail', orientation: 'portrait' },
+    { src: 'images/gallery/IMG_1261.jpeg', alt: 'Commercial electrical project', orientation: 'landscape' },
+    { src: 'images/gallery/IMG_1667.jpeg', alt: 'Electrical service installation', orientation: 'landscape' },
+    { src: 'images/gallery/KathyWilliamsIslandFixture.png', alt: 'Island fixture installation for Kathy Williams', orientation: 'portrait' },
+    { src: 'images/gallery/IMG_1851 (1).jpeg', alt: 'Completed electrical installation', orientation: 'landscape' },
+    { src: 'images/gallery/KenCoeEVCharger.png', alt: 'EV charger installation for Ken Coe', orientation: 'portrait' },
+    { src: 'images/gallery/ios_E1D14CB6-71B5-4FAB-8FA2-8903286463D1.jpg', alt: 'Electrical project installation', orientation: 'portrait' }
 ];
 
 // Gallery Elements

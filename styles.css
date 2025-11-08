@@ -82,7 +82,8 @@ ul {
 
 .nav__link:hover,
 .nav__link.active {
-	color: #cccccc;
+	/* color: #cccccc; */
+	color: #d29bdc;
 }
 
 .nav__link.active::after {
@@ -92,7 +93,7 @@ ul {
 	left: 0;
 	width: 100%;
 	height: 2px;
-	background-color: #ffffff;
+	background-color: #d29bdc;
 }
 
 .nav__toggle {
@@ -233,7 +234,7 @@ ul {
 	font-size: 2rem;
 	color: #ffffff;
 	text-align: center;
-	margin-bottom: 1.5rem;
+	/* margin-bottom: 1.5rem; */
 	letter-spacing: 2px;
 	font-weight: 600;
 }
@@ -241,12 +242,20 @@ ul {
 .services__subtitle {
 	color: #ffffff;
 	text-align: center;
-	margin-bottom: 3rem;
+	margin-bottom: 0;
 	font-size: 1rem;
 	font-weight: 300;
 	max-width: 600px;
 	margin-left: auto;
 	margin-right: auto;
+	padding-bottom: 2rem;
+}
+
+.services__divider {
+	width: 100px;
+	height: 3px;
+	background-color: #ffffff;
+	margin: 0 auto 2rem auto;
 }
 
 .services__grid {
@@ -387,7 +396,6 @@ ul {
 	font-size: 2rem;
 	color: #2d2462;
 	text-align: center;
-	margin-bottom: 1rem;
 	letter-spacing: 0.5px;
 }
 
@@ -395,7 +403,7 @@ ul {
 	font-size: 1.1rem;
 	color: #666;
 	text-align: center;
-	margin-bottom: 3rem;
+	margin-bottom: 1.5rem;
 	font-weight: 400;
 }
 
@@ -414,7 +422,8 @@ ul {
 	overflow-y: hidden;
 	scroll-behavior: smooth;
 	scroll-snap-type: x proximity;
-	padding: 1rem 0;
+	padding: 0; /* No padding */
+	border: 4px solid #000000; /* Black border around entire gallery */
 	-webkit-overflow-scrolling: touch;
 	scrollbar-width: none; /* Firefox */
 	-ms-overflow-style: none; /* IE and Edge */
@@ -1267,7 +1276,7 @@ ul {
 	}
 
 	.hero {
-		min-height: 340px;
+		min-height: 100px;
 		aspect-ratio: 16 / 10;
 		margin-top: 60px;
 	}
