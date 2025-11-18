@@ -127,6 +127,7 @@ function sendEmailNotification(data) {
    ```
 
    📋 **Save this URL - you'll need it in Step 4!**
+   https://script.google.com/macros/s/AKfycbx0g1786kvVVyD3iB_2sY0_lFk2VwD1DI81NgLRqYkfCHJTq3oZMUle1uMKRSltNo4-/exec
 
 8. Click **Done**
 
